@@ -3,13 +3,13 @@ version: 2.1
 executors:
   default:
     docker:
-      - image: cimg/base:stable  # Use a base Docker image
+      - image: cimg/base:stable  
 
 jobs:
   build:
     executor: default
     steps:
-      - checkout   # Step to checkout code
+      - checkout   
       - run:
           name: Install Dependencies
           command: |
@@ -17,11 +17,11 @@ jobs:
             sudo apt install -y build-essential
       - run:
           name: Build Application
-          command: make  # Replace with your build command
+          command: make  
       - run:
           name: Run Tests
-          command: make test  # Replace with your test command
+          command: make test  
       - persist_to_workspace:
           root: /workspace
           paths:
-            - build/  # Save build artifacts
+            - build/  
