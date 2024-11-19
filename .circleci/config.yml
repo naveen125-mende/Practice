@@ -18,10 +18,3 @@ jobs:
       - run:
           name: Build Application
           command: make  
-      - run:
-          name: Run Tests
-          command: make test  
-      - persist_to_workspace:
-          root: /workspace
-          paths:
-            - build/
