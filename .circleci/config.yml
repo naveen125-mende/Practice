@@ -3,18 +3,20 @@ version: 2.1
 executors:
   default:
     docker:
-      - image: cimg/base:stable  
+      - image: cimg/python:3.9 # Using a Python image
 
 jobs:
   build:
     executor: default
     steps:
-      - checkout   
+      - checkout   # Checkout your repository code
       - run:
           name: Install Dependencies
           command: |
             sudo apt update
             sudo apt install -y build-essential
+            # Install Python dependencies if needed
+            pip install -r requirements.txt  # Assuming you have a requirements.txt file
       - run:
-          name: Build Application
-          command:  file.py
+          name: Run Python Script
+          command: python file.py  # Run your Python script
