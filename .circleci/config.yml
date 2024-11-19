@@ -17,4 +17,4 @@ jobs:
             sudo apt install -y build-essential
       - run:
           name: Build Application
-          command: make  
+          command:  file.py
