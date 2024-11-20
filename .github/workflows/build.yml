@@ -28,8 +28,7 @@ jobs:
       run: python file.py
 
     - name: Run tests
-      run : pytest
+      run: pytest
 
     - name: Build the application
-      run : python setup.py build
-      
+      run: python setup.py build
