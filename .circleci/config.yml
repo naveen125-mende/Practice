@@ -1,29 +1,22 @@
-name: Python CI
+version: 2.1
 
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+executors:
+  default:
+    docker:
+      - image: cimg/python:3.9 
+
 jobs:
   build:
-    runs-on: ubuntu-latest
-
+    executor: default
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: 3.11 
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-
-    - name: Run Python script
-      run: python file.py
-    
+      - checkout  
+      - run:
+          name: Install Dependencies
+          command: |
+            sudo apt update
+            sudo apt install -y build-essential
+            # Install Python dependencies if needed
+            pip install -r requirements.txt  # Assuming you have a requirements.txt file
+      - run:
+          name: Run Python Script
+          command: python file.py  
