@@ -26,6 +26,4 @@ jobs:
 
     - name: Run Python script
       run: python file.py
-
-    - name: Build the application
-      run: python setup.py build
+    
