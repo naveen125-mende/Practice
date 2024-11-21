@@ -3,7 +3,8 @@ name: Python CI
 on:
   push:
     branches:
-      - '**'
+      - 'main'
+      - '!branch1'
       
 jobs:
   build:
