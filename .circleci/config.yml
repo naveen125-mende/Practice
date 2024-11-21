@@ -29,5 +29,5 @@ workflows:
           filters:
             branches:
               only:
-                - main
-                - branch1
+                - 'main'
+                - 'branch1'
