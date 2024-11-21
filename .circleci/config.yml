@@ -3,23 +3,33 @@ version: 2.1
 executors:
   default:
     docker:
-      - image: cimg/python:3.9 
+      - image: cimg/python:3.9
 
 jobs:
   build:
     executor: default
     steps:
-      - checkout  
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "requirements.txt" }}
+            - v1-dependencies-
       - run:
-          name: Install Dependencies
+          name: Install System Dependencies
           command: |
             sudo apt update
             sudo apt install -y build-essential
-            # Install Python dependencies if needed
-            pip install -r requirements.txt  # Assuming you have a requirements.txt file
+      - run:
+          name: Install Python Dependencies
+          command: pip install -r requirements.txt
+      - save_cache:
+          paths:
+            - ~/.cache/pip
+          key: v1-dependencies-{{ checksum "requirements.txt" }}
       - run:
           name: Run Python Script
-          command: python file.py  
+          command: python file.py
+
 workflows:
   version: 2.1
   build_and_test:
@@ -28,5 +38,5 @@ workflows:
           filters:
             branches:
               only:
-                - 'main'
-                - 'branch1'
+                - main
+                - branch1
