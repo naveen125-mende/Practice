@@ -20,3 +20,13 @@ jobs:
       - run:
           name: Run Python Script
           command: python file.py  
+workflows:
+  version: 2.1
+  build_and_test:
+    jobs:
+      - build
+          filters:
+            branches:
+              only:
+                - main
+                - branch1
