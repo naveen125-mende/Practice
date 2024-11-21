@@ -1,0 +1,22 @@
+version: 2.1
+
+executors:
+  default:
+    docker:
+      - image: cimg/python:3.9 
+
+jobs:
+  build:
+    executor: default
+    steps:
+      - checkout  
+      - run:
+          name: Install Dependencies
+          command: |
+            sudo apt update
+            sudo apt install -y build-essential
+            # Install Python dependencies if needed
+            pip install -r requirements.txt  # Assuming you have a requirements.txt file
+      - run:
+          name: Run Python Script
+          command: python file.py  
