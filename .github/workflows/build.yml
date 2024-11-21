@@ -2,8 +2,8 @@ name: Python CI
 
 on:
   push:
-    branches:
-      - '**'
+    branches-ignore:
+      - branch1
       
 jobs:
   build:
